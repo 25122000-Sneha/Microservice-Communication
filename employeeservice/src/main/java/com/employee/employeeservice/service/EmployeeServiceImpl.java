@@ -24,6 +24,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     private WebClient webClient;
 
+    @Autowired
+    private ApiClient apiClient;
+
     @Override
     public Employee addEmployee(Employee employee) {
        return employeeRepository.save(employee);
@@ -38,11 +41,13 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
         // Department dept = restTemplate.getForObject("http://localhost:8000/department/" + reqdEmp.getDepartmentCode(), Department.class);
 
-        Department dept = webClient.get()
-                        .uri("http://localhost:8000/department/" + reqdEmp.getDepartmentCode())
-                        .retrieve()
-                        .bodyToMono(Department.class)
-                        .block();
+        // Department dept = webClient.get()
+        //                 .uri("http://localhost:8000/department/" + reqdEmp.getDepartmentCode())
+        //                 .retrieve()
+        //                 .bodyToMono(Department.class)
+        //                 .block();
+
+        Department dept = apiClient.getDepartmentByCode(reqdEmp.getDepartmentCode());
 
         ApiResponseDto responseDto = new ApiResponseDto();
         responseDto.setEmployee(reqdEmp);
