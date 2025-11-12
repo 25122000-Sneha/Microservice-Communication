@@ -2,6 +2,7 @@ package com.employee.employeeservice.dto;
 
 import com.employee.employeeservice.entity.Department;
 import com.employee.employeeservice.entity.Employee;
+import com.employee.employeeservice.entity.Organization;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,4 +16,5 @@ import lombok.Setter;
 public class ApiResponseDto {
     private Employee employee;
     private Department department;
+    private Organization organization;
 }
